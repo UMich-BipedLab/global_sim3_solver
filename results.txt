@@ -1,0 +1,54 @@
+scaling = 1
+
+Noise level: 0.00
+Geodestic: 1.000
+
+
+Noise level: 0.10
+Geodestic: 1.024
+
+
+Noise level: 0.20
+Geodestic: 1.066
+
+
+Noise level: 0.30
+Geodestic: 1.075
+
+
+Noise level: 0.40
+Geodestic: 1.102
+
+Noise level: 0.50
+Geodestic: 1.145
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+scaling = 2.08511
+
+
+Noise level: 0.00
+Geodestic: 1.008
+
+Noise level: 0.10
+Geodestic: 1.109
+
+
+Noise level: 0.20
+Geodestic: 1.237
+
+
+Noise level: 0.30
+Geodestic: 1.385
+
+
+Noise level: 0.40
+Geodestic: 1.556
+
+
+Noise level: 0.50
+Geodestic: 1.981

@@ -12,6 +12,11 @@ methods (Abstract)
   
   q = quad(this)
   % Return quadratic form for this correspondence (in terms of vec(T))
+  
+  
+  transformed_pionts = transformPoints(this, T);
+  signed_d2 = signed_cost(this, T, centroid)
+  centroid = computeCentroid(this)
 end
 
 end

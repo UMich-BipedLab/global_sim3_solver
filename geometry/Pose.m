@@ -51,7 +51,7 @@ classdef Pose < handle & matlab.mixin.Copyable
         t = varargin{1};
         R = varargin{2};
       end
-      assert( isrotation(R) );
+%       assert( isrotation(R) );
       
       pose.T(4,4) = 1; % Set T with complete size as hom. matrix
       pose.t = t;

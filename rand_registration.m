@@ -1,4 +1,5 @@
-function [correspondences,T] = rand_registration( numObs, sd, R )
+function [correspondences, T, corrupt_cost] = ...
+    rand_registration( numObs, sd, R, scaling_enable )
 % [correspondences,T] = rand_registration( numObs, sd, R )
 % Create a set of random correspondences in a sphere or radius R
 % The *GT* transformation T used to generate the ideal problem is returned
@@ -35,7 +36,15 @@ correspondences = [p2p_correspondences, p2l_correspondences, p2pl_correspondence
 % This transformation convert measured points in frame {meas}
 % into the coordinate frame of the model {model},
 % so T = ^{model}T_{meas}
-T = Pose.rand();
+
+if scaling_enable
+    T = SimPose.rand();
+else
+    T = Pose.rand();
+end
+
+
+
 
 % Transform all sampled points into measured points (with inverse of GT)
 allPoints = [correspondences.point];
@@ -48,6 +57,7 @@ for i=1:numel(correspondences)
   % corrupt point coordinates with isotropic Gaussian
   corrupt(correspondences(i).point,sd);
 end
+corrupt_cost = sum(correspondences.cost(T));
 
 end
 

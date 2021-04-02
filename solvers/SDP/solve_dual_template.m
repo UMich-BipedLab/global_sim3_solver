@@ -21,11 +21,19 @@ end
 cvx_precision('best') % TODO: Choose as option from outside?
 cvx_solver sedumi % TODO: Choose as option from outside?
 % cvx_solver SDPT3
-cvx_quiet(false) % necessary false to dump results
-dumpfile = sprintf('temp_cvxDump_%s',num2str(randi(1e10)));
-cvx_solver_settings( 'dumpfile', dumpfile ) % dump statistics for parsing
 
+quite = true;
+
+
+cvx_quiet(quite) % necessary false to dump results
+if ~quite
+    dumpfile = sprintf('temp_cvxDump_%s',num2str(randi(1e10)));
+    cvx_solver_settings( 'dumpfile', dumpfile ) % dump statistics for parsing
+else
+    warning('off','all')
+end
 tic
+tStart = cputime;
 cvx_begin SDP % Use CVX's SDP mode
 %% Define all dual variables and penalize
 % Use a script to have flexibility in the definition here
@@ -66,19 +74,25 @@ G : Z >= 0; % Slack matrix must be positive semidefinite
 d = lam_g;
 maximize(d)
 cvx_end
-fprintf('CVX-Matlab time: %E\n',toc);
+
 
 % Reload CVX results to output object
 lam = Clam_RCQP( lam_unit_cols, lam_unit_rows,...
                  lam_ort_cols, lam_ort_rows,...
                  lam_det, lam_g );
-               
-% Read execution time
-CPU_total = readDump_time(dumpfile);
-time = CPU_total;
-delete([dumpfile,'.mat'])
-% For clearness, unset dumping as solver option
-cvx_solver_settings -clear dumpfile
+       
+if ~quite
+    fprintf('CVX-Matlab time: %E\n',toc);
+    % Read execution time
+    CPU_total = readDump_time(dumpfile);
+    time = CPU_total;
+    delete([dumpfile,'.mat'])
+    % For clearness, unset dumping as solver option
+    cvx_solver_settings -clear dumpfile
+else
+    time = cputime - tStart;
+end
+
 
 end
 

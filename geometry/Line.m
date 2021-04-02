@@ -47,14 +47,24 @@ classdef Line < Feature
       d2 = closestDist^2;
     end
     
+    function signed_d2 = signed_distSq(this,point,centroid)
+      % d^2 = distSq(LINE,POINT)
+      % Compute squared distance from POINT to LINE
+
+%       dir = sign(dot((point - project(this, point)), (centroid - point)));
+      dir = sign(dot(point.x - this.project(point).x, centroid.x - point.x));
+      signed_d2 = dir * distSq(this,point);
+    end
+    
     function h = plot(this,varargin)
       color = 'k';
-      hP = plot3(this.x(1),this.x(2),this.x(3),[color,'x']);
+      hP = plot3(varargin{1}, this.x(1),this.x(2),this.x(3), ...
+          [color,'x'], 'LineWidth', 6);
       % Set line (1m for now)
-      L = 1;
+      L = 2.5; % 1 
       lineData = [ this.x, this.x+L*this.v ]';
       c_foo = num2cell(lineData,1);
-      hL = line(c_foo{:},'Color',color);
+      hL = line(c_foo{:},'Color',color, 'LineWidth', 5);
       
       h = [hP;hL]; % concatenate handles
     end

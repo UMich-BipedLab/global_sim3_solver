@@ -1,36 +1,25 @@
-# Code for Convex Global 3D Registration with Lagrangian Duality (CVPR 17)
+# Global Solver For 3D LiDAR Intrinsic Calibration 
+## Overview
+This repository contains the implementation of the methods to solve the intrinsic parameters for a 3D LiDAR. The proposed model is described in paper: [Global Unifying Intrinsic Calibration for Spinning and Solid-State LiDARs](https://arxiv.org/abs/2012.03321).
 
-This repository contains the implementation of the methods compared in
-
-@inproceedings{briales17CVPR,
-title = {{Convex Global 3D Registration with Lagrangian Duality}},
-author = {Briales, Jesus and Gonzalez-Jimenez, Javier},
-booktitle = {International Conference on Computer Vision and Pattern Recognition},
-month = {jul},
-year = {2017}
-}
-
-In this work we proposed a novel convex relaxation for registration of points to points, lines and planes.
-Empirically, the relaxation results always tight and certifies global optimality.
-Indeed, the framework is able to deal with any optimization problem that has a quadratic objective
-on rotation matrix elements.
+* Authors: Bruce JK Huang, Chenxi Feng, Madhav Achar, Maani Ghaffari, and Jessy W. Grizzle
+* Maintainer: [Bruce JK Huang](https://www.brucerobot.com/), brucejkh[at]gmail.com
+* Affiliation: [The Biped Lab](https://www.biped.solutions/), the University of Michigan
 
 
-## Getting started
+This package has been tested under MATLAB 2019a and Ubuntu 18.04.
+More detailed introduction will be updated in a week. Sorry for the inconvenience!
 
-### Clone the repository
-This repository include some dependencies as submodules,
-so clone it with the `--recursive` option:
-```
-  git clone --recursive https://github.com/jbriales/CVPR17.git
-```
-If you already cloned it, you can still set the submodules with
-```
-  git submodule update --init --recursive
-```
+
+**[Issues]**
+If you encounter _any_ issues, I would be happy to help. If you cannot find a related one in the existing issues, please open a new one. I will try my best to help
+
+**[Notes]**
+This code is originally from [here](https://github.com/jbriales/CVPR17)
+
 
 ### Install the library
-To use the provided code and methods, just run the `setup.m` script.
+Run the `setup.m` script.
 Note you should have installed *CVX* (available [here](http://cvxr.com/cvx/)) in the path:
 
 - [Download CVX](http://cvxr.com/cvx/download/) for your platform
@@ -38,4 +27,5 @@ Note you should have installed *CVX* (available [here](http://cvxr.com/cvx/)) in
 
 ### Run the examples
 For a working example, see *example.m*.
+
 

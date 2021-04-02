@@ -28,6 +28,13 @@ classdef Point < Feature
       d2 = norm(this.x-point.x)^2;
     end
     
+    function d2 = signed_distSq(this, point, centroid)
+      % d^2 = distSq(PLANE,POINT)
+      % Compute squared distance from POINT to PLANE
+      dir = sign(dot(point.x - this.x, centroid.x - this.x));
+      d2 = dir * distSq(this,point);
+    end
+    
     % TODO: This should be available in all feature types? Then abstract.
     function new_point = corrupt(this,sd)
     % corrupt(point,noise)
@@ -41,6 +48,8 @@ classdef Point < Feature
       copyfields(this,new_point);
     end
     end
+    
+
   
     function h = plot(this,varargin)
       h = plot3(this.x(1),this.x(2),this.x(3),varargin{:});

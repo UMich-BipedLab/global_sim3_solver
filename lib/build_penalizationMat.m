@@ -22,7 +22,7 @@ skew_det = cell(1,3);
 for k=1:3
   skew_det{k} = skew(lam.det(:,k));
 end
-Q_pen = -kron(Lam_cols,eye(3)) - kron(eye(3),Lam_rows) + 0.5*skew( skew_det );
+Q_pen = -kron(Lam_cols,eye(3)) - kron(eye(3),Lam_rows) + 0.5*skew_t( skew_det );
 
 % Linear term
 b_pen = - 0.5*vec(lam.det);

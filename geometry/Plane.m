@@ -47,6 +47,26 @@ classdef Plane < Feature
       perpDist = dot(this.n,point.x-this.x,1);
       d2 = perpDist^2;
     end
-          
+    
+    function d2 = signed_distSq(this, point, centroid)
+      % d^2 = distSq(PLANE,POINT)
+      % Compute squared distance from POINT to PLANE
+      
+%       dir = sign(dot(point.x - this.project(this, point), centroid.x - point.x));
+      dir = sign(dot(point.x - this.project(point).x, centroid.x - point.x));
+      d2 = dir * distSq(this,point);
+    end
+    
+    function h = plot(this,varargin)
+      color = 'k';
+      hP = plot3(varargin{1}, this.x(1),this.x(2),this.x(3),[color,'x']);
+      % Set line (1m for now)
+      L = 1;
+      lineData = [ this.x, this.x+L*this.v ]';
+      c_foo = num2cell(lineData,1);
+      hL = line(c_foo{:},'Color',color);
+      
+      h = [hP;hL]; % concatenate handles
+    end
   end
 end

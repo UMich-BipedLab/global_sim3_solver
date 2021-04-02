@@ -1,4 +1,4 @@
-classdef Point2Point < Point2X
+classdef Point2Point < Point2X & matlab.mixin.Copyable
   %Point2Point Correspondence between 3D point and 3D point
   %   See also Correspondence.
   
